@@ -1,0 +1,111 @@
+html {
+    background-color: #0F0F0F;
+}
+
+nav {
+    width: 50%;
+    margin: 0 auto;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0 auto;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333333;
+}
+
+
+li {
+  float: left;
+}
+
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #111111;
+}
+
+body {
+    background-color: #202020;
+    width: 80%;
+    height: 1000px;
+    margin: 0 auto;
+    color: #ddddff;
+}
+
+footer {
+    margin: 0 auto;
+    text-align: center;
+    color: #ddddff;
+}
+
+table {
+    width: 50%;
+    margin: 0 auto;
+    background-color: #505050;
+    margin-top: 2%;
+}
+
+th {
+    color: #dedeff;
+}
+
+td {
+    color: #ddddff;
+}
+
+td#numcell {
+    text-align: center;
+}
+
+tr:nth-child(odd) {
+    background-color: #202020;
+}
+
+a#edit {
+    text-decoration: none;
+    color: #000000;
+    background-color:#dddddd;
+    border-radius: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+a#centerbutton {
+    display: block;
+    width: 10%;
+    text-align: center;
+    text-decoration: none;
+    color: #000000;
+    background-color: #dddddd;
+    border-radius: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin: auto;
+    margin-top: 1%;
+}
+
+div.form
+{
+    display: block;
+    text-align: center;
+}
+form
+{
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+}
+
+label {
+    color: #ddddff;
+}
