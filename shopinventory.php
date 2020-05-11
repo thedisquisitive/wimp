@@ -4,7 +4,7 @@ include 'include/head.php';
 include_once 'mysql.php';
 include 'include/navigation.php';
 
-$qry = "SELECT * FROM parts";
+$qry = "SELECT * FROM parts WHERE tech_use = true";
 
 $result = $mysqli->query($qry);
 
