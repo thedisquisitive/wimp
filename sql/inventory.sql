@@ -17,6 +17,9 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
 
+CREATE DATABASE inventory;
+USE inventory;
+
 --
 -- Database: `inventory`
 --
@@ -28,7 +31,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `parts` (
-  `id` int(8) NOT NULL,
+  `id` int(8) NOT NULL AUTO_INCREMENT,
   `category` varchar(20) NOT NULL,
   `manufacturer` varchar(35) NOT NULL,
   `name` varchar(80) NOT NULL,
@@ -36,20 +39,8 @@ CREATE TABLE `parts` (
   `stock` int(8) NOT NULL,
   `reserved` int(8) NOT NULL,
   `ordered` int(8) NOT NULL,
-  `tech_use` tinyint(1) NOT NULL
+  `tech_use` tinyint(1) NOT NULL,
+  PRIMARY KEY(`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `parts`
---
-ALTER TABLE `parts`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
 
