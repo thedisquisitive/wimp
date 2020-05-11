@@ -4,7 +4,7 @@ include 'include/head.php';
 include_once 'mysql.php';
 include 'include/navigation.php';
 
-$qry = "SELECT * FROM parts WHERE tech_use = true";
+$qry = "SELECT * FROM parts WHERE tech_use = true ORDER BY category";
 
 $result = $mysqli->query($qry);
 
