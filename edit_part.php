@@ -17,7 +17,7 @@ $data = $result->fetch_assoc();
 <div class='form'>
 	<form id='editform' action='/wimp/submit_edit.php' method='post'>
 		<label for='id'>ID:</label><br>
-        <input type='text' id='id' name='id' value=<?php echo "'".$data['id'] . "'"?>><br>
+        <input type='text' id='id' name='id' value=<?php echo "'".$data['id'] . "'"?> readonly='readonly'><br>
 		<label for='category'>Category:</label><br>
         <input type='text' id='category' name='category' value=<?php echo "'".$data['category'] . "'"?>><br>
 		<label for='manufacturer'>Manufacturer:</label><br>
@@ -33,7 +33,7 @@ $data = $result->fetch_assoc();
 		<label for='cost'>Cost:</label></br>
         <input type='text' id='cost' name='cost' value=<?php echo "'".$data['cost'] . "'"?>><br>
 		<label for='tech_use'>Commonly Used In Shop:</label></br>
-        <input type='checkbox' id='tech_use' name='tech_use' value=<?php echo "'".$data['tech_use']."'"?>><br><br>
+        <input type='checkbox' id='tech_use' name='tech_use' value=<?php if ($data['tech_use'] == true) { echo "'true' checked"; } else { echo "'false'"; }?>><br><br>
         <input type='submit' value='Submit'>
 	</form>
 </div>
