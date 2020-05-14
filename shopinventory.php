@@ -1,3 +1,7 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="jquery.tabledit.js"></script>
+<script src="custom_table_edit.js"></script>
+
 <?php
 
 include 'include/head.php';
@@ -10,27 +14,56 @@ if (isset($_GET['sort'])) {
     $sortby = $_GET['sort'];
 }
 
-$qry = "SELECT * FROM parts WHERE tech_use = true ORDER BY " . $sortby;
+$qry = "SELECT * FROM parts WHERE tech_use = 1 ORDER BY " . $sortby;
 
 $result = $mysqli->query($qry);
 
 
 if ($result->num_rows > 0) {
-    echo "<table>\n<tr><th><a href='shopinventory.php?sort=category'>CATEGORY</a></th><th><a href='shopinventory.php?sort=manufacturer'>ITEM</a></th><th><a href='shopinventory.php?sort=stock'>STOCK</a></th><th><a href='shopinventory.php?sort=reserved'>RESERVED</a></th><th><a href='shopinventory.php?sort=ordered'>ORDERED</a></th><th></th></tr>\n";
-    while($row = $result->fetch_assoc()) {
-        if ($row['stock'] - $row['reserved'] >= 0) {
-            echo "<tr><td id='itemcell'>" . $row['category'] . "</td><td id='itemcell'>" . $row['manufacturer'] . " " . $row['name'] . "</td><td id='numcell'>" . $row['stock'] . "</td><td id='numcell'>" . $row['reserved'] . "</td><td>" . $row['ordered'] . "</td><td><a href='edit_part.php?id=" . $row['id'] . "' id='edit' >Edit</a></td></tr>\n";
-        } else {
-	    if (($row['stock'] - $row['reserved'] + $row['ordered']) < 0) {
-              echo "<tr style='background-color: #aa0000;'><td id='itemcell'>" . $row['category'] . "</td><td id='itemcell'>" . $row['manufacturer'] . " " . $row['name'] . "</td><td id='numcell'>" . $row['stock'] . "</td><td id='numcell'>" . $row['reserved'] . "</td><td>" . $row['ordered'] . "</td><td><a href='edit_part.php?id=" . $row['id'] . "' id='edit' >Edit</a></td></tr>\n";
-            } else {
-              echo "<tr style='background-color: #004488;'><td id='itemcell'>" . $row['category'] . "</td><td id='itemcell'>" . $row['manufacturer'] . " " . $row['name'] . "</td><td id='numcell'>" . $row['stock'] . "</td><td id='numcell'>" . $row['reserved'] . "</td><td>" . $row['ordered'] . "</td><td><a href='edit_part.php?id=" . $row['id'] . "' id='edit' >Edit</a></td></tr>\n";
-            }
-        }
-    }
-    echo "</table>\n";
+?>
+
+<table id="data_table" class="table table-striped">
+<thead>
+<tr>
+<th><a href="tmpinventory.php?sort=id">ID</a></th>
+<th><a href="tmpinventory.php?sort=manufacturer">MANUFACTURER</a></th>
+<th><a href="tmpinventory.php?sort=name">ITEM</a></th>
+<th><a href="tmpinventory.php?sort=stock">STOCK</a></th>
+<th><a href="tmpinventory.php?sort=reserved">RESERVED</a></th>
+<th><a href="tmpinventory.php?sort=ordered">ORDERED</a></th>
+<th><a href="tmpinventory.php?sort=tech_use">SHOP USE</a></th>
+</tr>
+</thead>
+<tbody>
+<?php
+while ($data = $result->fetch_assoc()) {
+$current = $data['stock'] - $data['reserved'];
+$withordered = $current + $data['ordered'];
+
+?>
+<tr id=<?php echo "'" . $data['id'] . "'"; 
+if ($current < 0) {
+	if ($withordered < 0) {
+		echo " style='background-color: #aa0000;'";
+	} else if ($withordered >= 0) {
+		echo " style='background-color: #003300;'";
+	}
+}
+?>>
+<td><?php echo $data['id'];?></td>
+<td><?php echo $data['manufacturer'];?></td>
+<td><?php echo $data['name'];?></td>
+<td id="numcell"><?php echo $data['stock'];?></td>
+<td id="numcell"><?php echo $data['reserved'];?></td>
+<td id="numcell"><?php echo $data['ordered'];?></td>
+<td id="numcell"><?php echo $data['tech_use'];?></td>
+</tr>
+<?php } ?>
+</tbody>
+</table>
+<?php
 } else {
-    echo "Sorry, no results found.<br>\n";
+	echo "Sorry, no results found. Do parts exist?<br><br>\n\n";
 }
 
 echo "<a href='new_part.php' id='centerbutton'>Add New Part</a><br>\n";

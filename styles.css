@@ -98,6 +98,8 @@ a#centerbutton {
     margin-top: 1%;
 }
 
+
+
 div.form
 {
     display: block;
@@ -114,3 +116,9 @@ form
 label {
     color: #ddddff;
 }
+
+form#quickedit {
+
+}
+
+
